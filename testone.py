@@ -126,8 +126,13 @@ if __name__ == '__main__':
 	res = 0
 	try:
 		r = tagVideo("/var/www/covosk-cv/covid-mask-detector/face_mask.ckpt",x,outputPath=op)
-		if r!=1: 
+		if r==0: 
 			print ("No mask in photo")
+			res=1
+		elif r==1: 
+			print ("Mask detected in photo")
+		else: 
+			print ("Error photo detection")
 			res=1
 	except BaseException as e:
 		print ("Touble with photo {1}: {0}".format(e,sys.argv[1]))
